@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_warning.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_warning.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_menu_share_holo_light.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_menu_share_holo_light.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\verify_checkmark.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\verify_checkmark.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_search.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_search.png"
+    }
+]

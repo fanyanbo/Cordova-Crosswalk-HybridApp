@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-v21\\button_borderless_compat.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-v21\\button_borderless_compat.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable-v21\\button_compat.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable-v21\\button_compat.xml"
+    }
+]

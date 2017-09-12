@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <!--<div class="app">-->
+            <!--<h1>Apache Cordova</h1>-->
+            <!--<div id="deviceready" class="blink">-->
+                <!--<p class="event listening">Connecting to Device</p>-->
+                <!--<p class="event received">Device is Ready</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+                <button id="test">Click Me!!!</button>
+                <p >
+                    <table>
+                        <tr>
+                            <td width='225px'>
+                                <p><button class="event received" id="startloaclmedia" >启动本地媒体</button></p>
+                                <p><button class="event received" id="starttvsetting" >启动电视设置</button></p>
+                                <p><button class="event received" id="startsourcelist" >启动信号源</button></p>
+                                <p><button class="event received" id="startqrcode" >启动二维码</button></p>
+                                <p><button class="event received" id="startmoviehistory" >启动影视历史</button></p>
+                                <p><button class="event received" id="startmygames" >启动我的游戏</button></p>
+                                <p><button class="event received" id="startnormallocalapp" >启动我的应用</button></p>
+                                <p><button class="event received" id="startchildlocalapp" >启动儿童我的应用</button></p>
+                                <p><button class="event received" id="startusersetting" >启动给用户设置</button></p>
+                                <p><button class="event received" id="startnetsetting" >启动网络设置</button></p>
+                                <p><button class="event received" id="startbluetoothsetting" >启动蓝牙设置</button></p>
+                                <p><button class="event received" id="startmssagebox" >启动消息盒子</button></p>
+                                <p><button class="event received" id="startupgrade" >启动系统升级</button></p>
+                                <p><input type="text" id="locationid" /><button class="event received" id="getlocation" >获取定位信息</button></p>
+                                <p><input type="text" id="usertokenid" /><button class="event received" id="getusertoken" >获取用户token</button></p>
+                            </td>
+                            <td width='225px'>
+                                <p>影视列表id: <input type="text" name="listid" id="movielistid" value="1"/><button class="event received" id="startmovielist" >id跳转影视列表</button></p>
+                                <p>影视详情id: <input type="text" name="detailid" id="moviedetailid" value="1"/><button class="event received" id="startmoviedetail" >id跳转影视详情</button></p>
+                                <p>影视专题页id: <input type="text" name="topicid" id="movietopicid" value="1"/><button class="event received" id="startmovietopic" >id跳转影视专题</button></p>
+                                <p><button class="event received" id="startmemcenter" >启动影视会员中心</button></p>
+                                <p><button class="event received" id="startmoviehome" >启动影视主页</button></p>
+                                <p><button class="event received" id="startplaymovie" >播放测试影片</button></p>
+                                <p><input type="text" id="systeminfoid" /><button class="event received" id="getsysteminfo" >获取设备信息</button></p>
+                                <p><input type="text" id="isnetworkingid" /><button class="event received" id="getnetworking" >获取网络连接状态</button></p>
+                                <p><input type="text" id="nettypeid" /><button class="event received" id="getnettype" >获取网络连接类型</button></p>
+                                <p><input type="text" id="ipinfoid" /><button class="event received" id="getipinfp" >获取网络ip地址</button></p>
+                            </td>
+                            <td width='225px'>
+                                <p><button class="event received" id="startappstore" >启动应用圈</button></p>
+                                <p><button class="event received" id="startappstorebd" >启动应用圈榜单</button></p>
+                                <p>应用分类页id: <input type="text" name="sortid" id="appsortid" value="1"/><button class="event received" id="startappstoresort" >id跳转应用圈分类</button></p>
+                                <p>应用列表页id: <input type="text" name="listid" id="applistid" value="1"/><button class="event received" id="startappstorelist" >id跳转应用圈列表</button></p>
+                                <p>应用详情页id: <input type="text" name="detailid" id="appdetailid" value="1"/><button class="event received" id="startappstoredetail" >id跳转应用圈详情</button></p>
+                                <p>应用专题页id: <input type="text" name="zoneid" id="appzoneid" value="1"/><button class="event received" id="startappstorezone" >id跳转应用圈专题</button></p>
+                                <p>跳转下载: <input type="text" name="download" id="downloadid" value="https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk,"/><button class="event received" id="startdownloadapp" >下载一个任务</button></p>
+                                <p><input type="text" id="hasloginid" /><button class="event received" id="gethaslogin" >用户是否登录</button></p>
+                                <p><textarea type="text" id="userinfoid" style="height:100px;"></textarea><button class="event received" id="getuserinfo" >获取用户信息</button></p>
+                            </td>
+                            <td width='225px'>
+                                <p><button class="event received" id="startgamecenter" >启动酷游吧</button></p>
+                                <p><button class="event received" id="startgamearsenal" >启动游戏军火库</button></p>
+                                <p>游戏列表页id: <input type="text" name="listid" id="gamelistid" value="1"/>
+                                    游戏列表页title: <input type="text" name="title" id="gametitleid" value="1"/><button class="event received" id="startgamelist" >id跳转酷游吧列表</button></p>
+                                <p>游戏详情页id: <input type="text" name="detailid" id="gamedetailid" value="1"/><button class="event received" id="startgamedetail" >id跳转酷游吧详情</button></p>
+                                <p>游戏专题页id: <input type="text" name="zoneid" id="gamezoneid" value="1"/><button class="event received" id="startgamezone" >id跳转酷游吧专题</button></p>
+                                <p>网络拔插事件<input type="text" id="netchanged" /></p>
+                                <p>u盘拔插事件<input type="text" id="usbchanged" /></p>
+                                <p>应用下载事件<input type="text" id="downloadchanged" /></p>
+                                <p><button class="event received" id="startpurcharse" >启动支付订单</button>
+                                    支付完成事件<input type="text" id="purcharsecallback" /></p>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

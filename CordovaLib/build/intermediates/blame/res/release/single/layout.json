@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\color_picker_advanced_component.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\color_picker_advanced_component.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\two_field_date_picker.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\two_field_date_picker.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\autofill_keyboard_accessory_icon.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\autofill_keyboard_accessory_icon.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\color_picker_dialog_title.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\color_picker_dialog_title.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\color_picker_dialog_content.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\color_picker_dialog_content.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\validation_message_bubble.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\validation_message_bubble.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\autofill_keyboard_accessory_item.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\autofill_keyboard_accessory_item.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\dropdown_item.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\date_time_suggestion.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\date_time_suggestion.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\date_time_picker_dialog.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\date_time_picker_dialog.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\layout\\multi_field_time_picker_dialog.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\layout\\multi_field_time_picker_dialog.xml"
+    }
+]

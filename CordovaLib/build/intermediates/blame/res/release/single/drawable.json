@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\color_button_background.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\color_button_background.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\autofill_chip_inset.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\autofill_chip_inset.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\dropdown_popup_background_up.9.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\dropdown_popup_background_up.9.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\bubble_arrow_up.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\bubble_arrow_up.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\ic_menu_share_holo_light.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\ic_menu_share_holo_light.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\ic_warning.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\ic_warning.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\color_picker_advanced_select_handle.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\color_picker_advanced_select_handle.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\dropdown_label_color.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\dropdown_label_color.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\ondemand_overlay.9.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\ondemand_overlay.9.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\ic_search.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\ic_search.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\dropdown_popup_background_down.9.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\dropdown_popup_background_down.9.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\dropdown_popup_background.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\dropdown_popup_background.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\verify_checkmark.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\verify_checkmark.png"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\color_picker_border.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\color_picker_border.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\button_compat_shape.xml",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\button_compat_shape.xml"
+    },
+    {
+        "merged": "D:\\test\\Cordova-Crosswalk-HybridApp\\CordovaLib\\build\\intermediates\\res\\merged\\release\\drawable\\bubble.9.png",
+        "source": "D:\\test\\Cordova-Crosswalk-HybridApp\\CrosswalkLib\\build\\intermediates\\bundles\\default\\res\\drawable\\bubble.9.png"
+    }
+]
