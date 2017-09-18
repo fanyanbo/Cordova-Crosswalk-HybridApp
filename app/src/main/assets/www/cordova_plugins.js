@@ -15,7 +15,7 @@ module.exports = [
                 ]
             },
             {
-                "file": "plugins/cordova-plugin-startapp/www/coocaaos_api.js",
+                "file": "plugins/cordova-plugin-coocaaosapi/www/coocaaos_api.js",
                 "id": "cordova-plugin-coocaaosapi.CoocaaOS_Api",
                 "clobbers": [
                      "coocaaos_api"

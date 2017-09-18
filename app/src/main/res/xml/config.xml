@@ -10,6 +10,9 @@
     <feature name="StartAppPlugin">
         <param name="android-package" value="org.coocaa.plugin.startapp.StartAppPlugin"/>
     </feature>
+    <feature name="CoocaaApiPlugin">
+        <param name="android-package" value="org.coocaa.plugin.api.CoocaaApiPlugin"/>
+    </feature>
     <name>HelloWorld2</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

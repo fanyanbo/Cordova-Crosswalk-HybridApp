@@ -52,25 +52,23 @@ var app = {
     triggleButton:function(){
 
         cordova.require("cordova-plugin-myplugin.MyPlugin");
-        cordova.require("cordova-plugin-startapp.COOCAAOS_StartApp");
+        cordova.require("cordova-plugin-startapp.CoocaaOS_StartApp");
+        cordova.require("cordova-plugin-coocaaosapi.CoocaaOS_Api");
 
         document.getElementById("test").addEventListener("click", function (){
             console.log("fyb,test,test,test");
             coocaaos_test.callJavaFunc("test",0);
-            coocaaos_startapp.startLocalMedia(
-                function(message) {
-                    console.log(message);
-                },
-                function(error) {
-                    console.log(error);
-                }
-            );
+            coocaaos_api.callJavaFunc("test0918",0);
+//            coocaaos_startapp.startLocalMedia(
+//                function(message) {
+//                    console.log(message);
+//                },
+//                function(error) {
+//                    console.log(error);
+//                }
+//            );
         },false);
-
     }
-
-
-
 };
 
 app.initialize();
