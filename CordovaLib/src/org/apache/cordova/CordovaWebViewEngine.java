@@ -80,6 +80,7 @@ public interface CordovaWebViewEngine {
         void onPageStarted(String newUrl);
         void onReceivedError(int errorCode, String description, String failingUrl);
         void onPageFinishedLoading(String url);
+        void onProgressChanged(int newProcess);
         boolean onNavigationAttempt(String url);
     }
 }

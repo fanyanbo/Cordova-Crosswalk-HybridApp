@@ -33,6 +33,7 @@ import org.apache.cordova.engine.SystemWebViewEngine;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -72,9 +73,25 @@ public class CordovaWebViewImpl implements CordovaWebView {
 
     private Set<Integer> boundKeyCodes = new HashSet<Integer>();
 
+    //add by fyb
+    private static boolean FileIsExist(String path) {
+        try {
+            File f=new File(path);
+            if(!f.exists())
+                return false;
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     public static CordovaWebViewEngine createEngine(Context context, CordovaPreferences preferences) {
         String className = preferences.getString("webview", SystemWebViewEngine.class.getCanonicalName());
-        Log.i("fyb","11------->createEngine SystemWebViewEngine.class.getCanonicalName()="+SystemWebViewEngine.class.getCanonicalName());
+//        if(FileIsExist("/data/crosswalk.txt")){
+//            className = "org.crosswalk.engine.XWalkWebViewEngine";
+//        }else{
+//            className = SystemWebViewEngine.class.getCanonicalName();
+//        }
         Log.i("fyb","11------->createEngine className="+className);
         try {
             Class<?> webViewClass = Class.forName(className);
@@ -550,6 +567,11 @@ public class CordovaWebViewImpl implements CordovaWebView {
             if (url.equals("about:blank")) {
                 pluginManager.postMessage("exit", null);
             }
+        }
+
+        @Override
+        public void onProgressChanged(int newProcess) {
+            pluginManager.postMessage("onProgressChanged",newProcess);
         }
 
         @Override

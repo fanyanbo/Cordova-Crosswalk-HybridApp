@@ -19,9 +19,16 @@ public class MainActivity extends CordovaActivity {
         }
 
         // Set by <content src="index.html" /> in config.xml
-        launchUrl = "http://beta.webapp.skysrt.com/appstore/ad2/index.html";
+//        launchUrl = "http://beta.webapp.skysrt.com/appstore/ad2/index.html";
+//        launchUrl = "http://beta.webapp.skysrt.com/lxw/H5/video.html";
+//        launchUrl = "http://beta.webapp.skysrt.com/lxw/NFC/index.html";
+
+        int core = extras.getInt("core", 0);
+
+        Log.i("fyb","Tag 7 launchUrl = " + launchUrl + ", core = " + core);
+
+        setCore(core);
         loadUrl(launchUrl);
 
-        Log.i("fyb","Tag 3 Android Studio launchUrl = " + launchUrl);
     }
 }

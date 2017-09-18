@@ -22,8 +22,10 @@ package org.apache.cordova;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 
 import org.json.JSONException;
@@ -59,6 +61,25 @@ public class CordovaInterfaceImpl implements CordovaInterface {
         this.permissionResultCallbacks = new CallbackMap();
     }
 
+    public interface CordovaInterfaceListener
+    {
+        public void	onPageStarted(String url);
+        public void onPageLoadingFinished(String url);
+        public void onReceivedError(int errorCode, String description, String failingUrl);
+        public void doUpdateVisitedHistory(String url, boolean isReload);
+        public boolean shouldOverrideUrlLoading(String url);
+        public void onReceivedTitle(String title);
+        public void onReceivedIcon(Bitmap icon);
+        public void onProgressChanged(int process);
+    }
+
+    private CordovaInterfaceListener mCordovaListener;
+
+    public void setCordovaInterfaceListener(CordovaInterfaceListener corListener)
+    {
+        mCordovaListener = corListener;
+    }
+
     @Override
     public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode) {
         setActivityResultCallback(command);
@@ -88,6 +109,115 @@ public class CordovaInterfaceImpl implements CordovaInterface {
     public Object onMessage(String id, Object data) {
         if ("exit".equals(id)) {
             activity.finish();
+        }
+        else if("onPageStarted".equals(id))
+        {
+            if(data!=null)
+            {
+                String url = data.toString();
+                if(mCordovaListener!=null)
+                {
+                    mCordovaListener.onPageStarted(url);
+                }
+            }
+        }
+        else if("onPageFinished".equals(id))
+        {
+            if(data!=null)
+            {
+                String url = data.toString();
+                if(mCordovaListener!=null)
+                {
+                    mCordovaListener.onPageLoadingFinished(url);
+                }
+            }
+
+        }
+        else if("onReceivedError".equals(id))
+        {
+            if(data!=null)
+            {
+                JSONObject jsonData = (JSONObject)data;
+                try {
+                    int errorCode = jsonData.getInt("errorCode");
+                    String desString = jsonData.getString("description");
+                    String failUrl = jsonData.getString("url");
+                    if(mCordovaListener!=null)
+                    {
+                        mCordovaListener.onReceivedError(errorCode, desString, failUrl);
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        else if("onNavigationAttempt".equals(id))
+        {
+            if(data!=null)
+            {
+                if(mCordovaListener!=null)
+                {
+                    String url = data.toString();
+                    return mCordovaListener.shouldOverrideUrlLoading(url);
+                }
+            }
+        }
+        else if("onReceivedTitle".equals(id))
+        {
+            if(mCordovaListener!=null)
+            {
+                String title = null;
+                if(data!=null)
+                {
+                    title = data.toString();
+                }
+                mCordovaListener.onReceivedTitle(title);
+            }
+        }
+        else if("onReceivedIcon".equals(id))
+        {
+            if(mCordovaListener!=null)
+            {
+                Bitmap icon = null;
+                if(data!=null)
+                {
+                    icon = (Bitmap)data;
+                }
+                mCordovaListener.onReceivedIcon(icon);
+            }
+        }
+        else if("onProgressChanged".equals(id))
+        {
+            if(mCordovaListener!=null)
+            {
+                int progessData = 0;
+                if(data!=null)
+                {
+                    progessData = (Integer)data;
+                }
+                mCordovaListener.onProgressChanged(progessData);
+            }
+        }
+        else if("doUpdateVisitedHistory".equals(id))
+        {
+            if(mCordovaListener!=null)
+            {
+                if(data!=null)
+                {
+                    JSONObject jsonObj = (JSONObject)data;
+                    try {
+                        String url = jsonObj.getString("url");
+                        boolean isReload = jsonObj.getBoolean("isReload");
+                        mCordovaListener.doUpdateVisitedHistory(url, isReload);
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+
+            }
         }
         return null;
     }
@@ -222,8 +352,10 @@ public class CordovaInterfaceImpl implements CordovaInterface {
     }
 
     public void requestPermissions(CordovaPlugin plugin, int requestCode, String [] permissions) {
-        int mappedRequestCode = permissionResultCallbacks.registerCallback(plugin, requestCode);
-        getActivity().requestPermissions(permissions, mappedRequestCode);
+        if(Build.VERSION.SDK_INT >= 23){//modified by fyb
+            int mappedRequestCode = permissionResultCallbacks.registerCallback(plugin, requestCode);
+            getActivity().requestPermissions(permissions, mappedRequestCode);
+        }
     }
 
     public boolean hasPermission(String permission)

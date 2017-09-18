@@ -156,4 +156,12 @@ public class XWalkCordovaResourceClient extends XWalkResourceClient {
 
         super.onReceivedClientCertRequest(view, request);
     }
+
+    //modified by fyb
+    @Override
+    public void onProgressChanged(XWalkView view, int progressInPercent) {
+
+        parentEngine.client.onProgressChanged(progressInPercent);
+     //  super.onProgressChanged(view, progressInPercent);
+    }
 }

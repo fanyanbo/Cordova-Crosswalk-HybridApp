@@ -30,10 +30,14 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +46,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+
+import com.skyworth.ui.api.SkyWithBGLoadingView;
 
 /**
  * This class is the main Android activity that represents the Cordova
@@ -98,6 +104,13 @@ public class CordovaActivity extends Activity {
     protected ArrayList<PluginEntry> pluginEntries;
     protected CordovaInterfaceImpl cordovaInterface;
 
+    //add by fyb
+    protected FrameLayout mainLayout;
+    protected SkyWithBGLoadingView mLoadingView;
+    protected boolean mIsLoading = false;
+
+    private long mStartLoadingTime = 0, mEndLoadingTime = 0;
+
     /**
      * Called when the activity is first created.
      */
@@ -140,6 +153,88 @@ public class CordovaActivity extends Activity {
         if (savedInstanceState != null) {
             cordovaInterface.restoreInstanceState(savedInstanceState);
         }
+
+        cordovaInterface.setCordovaInterfaceListener(new CordovaInterfaceImpl.CordovaInterfaceListener() {
+            @Override
+            public void onPageStarted(String url) {
+                Log.i("fyb","onPageStarted url = " + url);
+
+                mStartLoadingTime = SystemClock.uptimeMillis();
+                Log.i("fyb","onPageStarted mStartLoadingTime = " + mStartLoadingTime);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showLoadingView();
+                        appView.getView().setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void onPageLoadingFinished(String url) {
+                Log.i("fyb","onPageLoadingFinished url = " + url);
+
+                mEndLoadingTime = SystemClock.uptimeMillis();
+                Log.i("fyb","onPageLoadingFinished (mEndLoadingTime-mStartLoadingTime) = " + (mEndLoadingTime-mStartLoadingTime));
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideLoadingView();
+                        appView.getView().setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void onReceivedError(int errorCode, String description, String failingUrl) {
+                Log.i("fyb","onReceivedError description = " + description);
+            }
+
+            @Override
+            public void doUpdateVisitedHistory(String url, boolean isReload) {
+
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(String url) {
+                return false;
+            }
+
+            @Override
+            public void onReceivedTitle(String title) {
+                Log.i("fyb","onReceivedTitle title = " + title);
+            }
+
+            @Override
+            public void onReceivedIcon(Bitmap icon) {
+            }
+
+            @Override
+            public void onProgressChanged(int process) {
+                Log.i("fyb","onProgressChanged process = " + process);
+            }
+        });
+    }
+
+    //add by fyb
+    protected void showLoadingView() {
+        if(mLoadingView != null) {
+            mLoadingView.showLoading();
+            mIsLoading = true;
+        }
+    }
+
+    protected void hideLoadingView() {
+        if(mLoadingView != null) {
+            mLoadingView.dismissLoading();
+            mIsLoading = false;
+        }
+    }
+
+    protected boolean isLoading() {
+        return mIsLoading;
     }
 
     protected void init() {
@@ -177,7 +272,18 @@ public class CordovaActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
 
-        setContentView(appView.getView());
+        appView.getView().setVisibility(View.INVISIBLE);
+        mainLayout = new FrameLayout(this);
+        mainLayout.addView(appView.getView());
+
+        mLoadingView = new SkyWithBGLoadingView(this);
+        FrameLayout.LayoutParams loading_p = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
+        loading_p.gravity = Gravity.CENTER;
+        mainLayout.addView(mLoadingView, loading_p);
+
+        setContentView(mainLayout);
+
+//        setContentView(appView.getView());
 
         if (preferences.contains("BackgroundColor")) {
             try {
@@ -207,13 +313,19 @@ public class CordovaActivity extends Activity {
     }
 
     protected CordovaInterfaceImpl makeCordovaInterface() {
-        return new CordovaInterfaceImpl(this) {
-            @Override
-            public Object onMessage(String id, Object data) {
-                // Plumb this to CordovaActivity.onMessage for backwards compatibility
-                return CordovaActivity.this.onMessage(id, data);
-            }
-        };
+        return new CordovaInterfaceImpl(this);
+//        {
+//            @Override
+//            public Object onMessage(String id, Object data) {
+//                // Plumb this to CordovaActivity.onMessage for backwards compatibility
+//                return CordovaActivity.this.onMessage(id, data);
+//            }
+//        };
+    }
+
+    //add by fyb
+    protected void setCore(int core) {
+        preferences.set("webview",((core == 0) ? "org.apache.cordova.engine.SystemWebViewEngine" : "org.crosswalk.engine.XWalkWebViewEngine"));
     }
 
     /**
