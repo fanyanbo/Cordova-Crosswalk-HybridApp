@@ -20,6 +20,12 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('backbutton', this.handleBackButton.bind(this), false);
+    },
+
+    handleBackButton: function() {
+        console.log("fyb------->BackButtonPressed");
+        navigator.app.exitApp();
     },
 
     // deviceready Event Handler
@@ -58,15 +64,15 @@ var app = {
         document.getElementById("test").addEventListener("click", function (){
             console.log("fyb,test,test,test");
             coocaaos_test.callJavaFunc("test",0);
-            coocaaos_api.callJavaFunc("test0918",0);
-//            coocaaos_startapp.startLocalMedia(
-//                function(message) {
-//                    console.log(message);
-//                },
-//                function(error) {
-//                    console.log(error);
-//                }
-//            );
+//            coocaaos_api.callJavaFunc("test0918",0);
+            coocaaos_api.startLocalMedia(
+                function(message) {
+                    console.log(message);
+                },
+                function(error) {
+                    console.log(error);
+                }
+            );
         },false);
     }
 };

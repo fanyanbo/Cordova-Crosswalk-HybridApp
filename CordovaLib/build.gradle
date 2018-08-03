@@ -139,5 +139,6 @@ bintray {
 dependencies {
     compile project(':CrosswalkLib')
     compile project(path: ':ccExACommonUISDK')
+    compile project(path: ':ccSkySDK')
 }
 

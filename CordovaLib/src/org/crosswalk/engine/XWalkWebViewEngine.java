@@ -32,6 +32,7 @@ import android.Manifest;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,6 +79,8 @@ public class XWalkWebViewEngine implements CordovaWebViewEngine {
     protected XWalkActivityDelegate activityDelegate;
     protected String startUrl;
     protected CordovaPreferences preferences;
+
+    private String ua;
 
     /** Used when created via reflection. */
     public XWalkWebViewEngine(Context context, CordovaPreferences preferences) {
@@ -209,6 +212,8 @@ public class XWalkWebViewEngine implements CordovaWebViewEngine {
         if (!appendUserAgent.isEmpty()) {
             webView.setUserAgentString(webView.getUserAgentString() + " " + appendUserAgent);
         }
+
+        webView.setUserAgentString(this.ua);
         
         if (preferences.contains("BackgroundColor")) {
             int backgroundColor = preferences.getInteger("BackgroundColor", Color.BLACK);
@@ -220,6 +225,7 @@ public class XWalkWebViewEngine implements CordovaWebViewEngine {
         webView.setBackgroundColor(0);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 
     private static void exposeJsInterface(XWalkView webView, CordovaBridge bridge) {
@@ -324,6 +330,11 @@ public class XWalkWebViewEngine implements CordovaWebViewEngine {
      */
     public void evaluateJavascript(String js, ValueCallback<String> callback) {
         webView.evaluateJavascript(js, callback);
+    }
+
+    @Override
+    public void setUserAgentString(String ua) {
+        this.ua = ua;
     }
 
     public boolean isXWalkReady() {

@@ -397,6 +397,11 @@ public class CordovaWebViewImpl implements CordovaWebView {
         return pluginManager.postMessage(id, data);
     }
 
+    @Override
+    public void setUserAgentString(String ua) {
+        engine.setUserAgentString(ua);
+    }
+
     // Engine method proxies:
     @Override
     public String getUrl() {

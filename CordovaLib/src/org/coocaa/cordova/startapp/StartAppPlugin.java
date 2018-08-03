@@ -1,4 +1,4 @@
-package org.coocaa.plugin.startapp;
+package org.coocaa.cordova.startapp;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -26,7 +26,7 @@ public class StartAppPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-        Log.i(Tag,"StartAppPlugin action = " + action);
+        Log.i(Tag,"StartAppPlugin 22 action = " + action);
         if (action.equals("start")) {
             this.start(args, callbackContext);
         }

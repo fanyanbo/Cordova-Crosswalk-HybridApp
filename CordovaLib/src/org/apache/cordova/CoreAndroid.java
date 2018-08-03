@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import java.lang.reflect.Field;
@@ -75,6 +76,7 @@ public class CoreAndroid extends CordovaPlugin {
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
 
+        Log.i("fyb","CoreAndroid execute action = " + action);
         try {
             if (action.equals("clearCache")) {
                 this.clearCache();

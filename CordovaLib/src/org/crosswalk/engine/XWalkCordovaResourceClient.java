@@ -22,6 +22,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.util.Log;
 import android.webkit.ValueCallback;
 import android.webkit.WebResourceResponse;
 
@@ -60,6 +61,8 @@ public class XWalkCordovaResourceClient extends XWalkResourceClient {
     public void onReceivedLoadError(XWalkView view, int errorCode, String description,
            String failingUrl) {
         LOG.d(TAG, "CordovaWebViewClient.onReceivedError: Error code=%s Description=%s URL=%s", errorCode, description, failingUrl);
+
+        Log.i("fyb", "CordovaWebViewClient.onReceivedError: Error code=" + errorCode + " Description= " + description + "URL="+failingUrl);
 
         parentEngine.client.onReceivedError(errorCode, description, failingUrl);
     }
@@ -112,6 +115,8 @@ public class XWalkCordovaResourceClient extends XWalkResourceClient {
         final String packageName = parentEngine.cordova.getActivity().getPackageName();
         final PackageManager pm = parentEngine.cordova.getActivity().getPackageManager();
 
+        Log.i("fyb", "onReceivedSslError");
+
         ApplicationInfo appInfo;
         try {
             appInfo = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
@@ -132,6 +137,8 @@ public class XWalkCordovaResourceClient extends XWalkResourceClient {
     public void onReceivedHttpAuthRequest(XWalkView view, XWalkHttpAuthHandler handler,
             String host, String realm) {
         // Check if there is some plugin which can resolve this auth challenge
+        Log.i("fyb", "onReceivedHttpAuthRequest");
+
         PluginManager pluginManager = parentEngine.pluginManager;
         if (pluginManager != null && pluginManager.onReceivedHttpAuthRequest(
                 parentEngine.parentWebView,

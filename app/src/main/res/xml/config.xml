@@ -7,11 +7,17 @@
     <feature name="MyPlugin">
         <param name="android-package" value="org.fyb.myplugin.MyPlugin"/>
     </feature>
-    <feature name="StartAppPlugin">
-        <param name="android-package" value="org.coocaa.plugin.startapp.StartAppPlugin"/>
+    <feature name="startApp">
+        <param name="android-package" value="org.coocaa.cordova.startapp.StartAppPlugin"/>
     </feature>
-    <feature name="CoocaaApiPlugin">
-        <param name="android-package" value="org.coocaa.plugin.api.CoocaaApiPlugin"/>
+    <feature name="CoocaaOSApi">
+        <param name="android-package" value="org.coocaa.cordova.api.CoocaaApiPlugin"/>
+    </feature>
+    <feature name="DynamicPluginLoader">
+        <param name="android-package" value="org.coocaa.cordova.dynamicloader.DynamicLoaderPlugin"/>
+    </feature>
+    <feature name="broadcaster">
+        <param name="android-package" value="org.coocaa.cordova.broadcaster.BroadcasterPlugin"/>
     </feature>
     <name>HelloWorld2</name>
     <description>
@@ -22,13 +28,16 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <allow-intent href="market:*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <!--<allow-intent href="http://*/*" />-->
+    <!--<allow-intent href="https://*/*" />-->
+    <!--<allow-intent href="tel:*" />-->
+    <!--<allow-intent href="sms:*" />-->
+    <!--<allow-intent href="mailto:*" />-->
+    <!--<allow-intent href="geo:*" />-->
+    <!--<allow-intent href="market:*" />-->
     <preference name="loglevel" value="DEBUG" />
     <preference name="webView" value="org.crosswalk.engine.XWalkWebViewEngine" />
 </widget>

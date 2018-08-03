@@ -18,15 +18,22 @@
 */
 package org.apache.cordova;
 
+import java.io.File;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import org.coocaa.util.BrowserVirtualInput;
+import org.coocaa.util.UIUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -38,8 +45,10 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -48,6 +57,8 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.skyworth.ui.api.SkyWithBGLoadingView;
+
+import dalvik.system.PathClassLoader;
 
 /**
  * This class is the main Android activity that represents the Cordova
@@ -90,6 +101,9 @@ public class CordovaActivity extends Activity {
     private static int ACTIVITY_RUNNING = 1;
     private static int ACTIVITY_EXITING = 2;
 
+    private static String IE9_USERAGENT = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)";
+    private int userAgentMode = 0;
+
     // Keep app running when pause is received. (default = true)
     // If true, then the JavaScript and native code continue to run in the background
     // when another application (activity) is started.
@@ -116,6 +130,8 @@ public class CordovaActivity extends Activity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        initNativeDirectory(getApplication());
         // need to activate preferences before super.onCreate to avoid "requestFeature() must be called before adding content" exception
         loadConfig();
 
@@ -148,6 +164,9 @@ public class CordovaActivity extends Activity {
         }
 
         super.onCreate(savedInstanceState);
+
+//        UIUtil.setDpiDiv_Resolution(this.getApplicationContext());
+//        initScrollEdge();
 
         cordovaInterface = makeCordovaInterface();
         if (savedInstanceState != null) {
@@ -242,6 +261,8 @@ public class CordovaActivity extends Activity {
         createViews();
         if (!appView.isInitialized()) {
             appView.init(cordovaInterface, pluginEntries, preferences);
+            if(userAgentMode == 1)
+                appView.setUserAgentString(IE9_USERAGENT);
         }
         cordovaInterface.onCordovaInit(appView.getPluginManager());
 
@@ -326,6 +347,10 @@ public class CordovaActivity extends Activity {
     //add by fyb
     protected void setCore(int core) {
         preferences.set("webview",((core == 0) ? "org.apache.cordova.engine.SystemWebViewEngine" : "org.crosswalk.engine.XWalkWebViewEngine"));
+    }
+
+    protected void setUserAgentMode(int mode) {
+        userAgentMode = mode;
     }
 
     /**
@@ -625,6 +650,160 @@ public class CordovaActivity extends Activity {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+
+        final int keyCode = event.getKeyCode();
+        if (false)
+        {
+            if (event.getAction() == KeyEvent.ACTION_DOWN)
+            {
+                switch (keyCode)
+                {
+                    case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                        return BrowserVirtualInput.getInstance().clickCenter();
+                    case KeyEvent.KEYCODE_DPAD_DOWN:
+                        Log.i("fyb", "flay_y = " + flag_y + ", down_y = " + down_y);
+
+                        if (flag_y > down_y)
+                        {
+                            if (getTopView().canScrollVertically(SCROLL_DEFAULT_V))
+                            {
+                                Log.i("fyb","222222222");
+                                getTopView().scrollBy(0, SCROLL_DEFAULT_V);
+                            }else{
+                                Log.i("fyb","2222222");
+                            }
+                        }
+
+                        return BrowserVirtualInput.getInstance().moveDown(keyCode);
+                    case KeyEvent.KEYCODE_DPAD_LEFT:
+
+                        if (flag_X < left_x)
+                        {
+                            scrollWebView(-SCROLL_DEFAULT_H);
+                        }
+
+                        return BrowserVirtualInput.getInstance().moveLeft(keyCode);
+                    case KeyEvent.KEYCODE_DPAD_RIGHT:
+                        if (flag_X > right_x)
+                        {
+                            scrollWebView(SCROLL_DEFAULT_H);
+                        }
+                        return BrowserVirtualInput.getInstance().moveRight(keyCode);
+                    case KeyEvent.KEYCODE_DPAD_UP:
+                        if (flag_y < up_y)
+                        {
+                            if (getTopView().canScrollVertically(-SCROLL_DEFAULT_V))
+                            {
+                                getTopView().scrollBy(0, -SCROLL_DEFAULT_V);
+                            }
+                        }
+                        return BrowserVirtualInput.getInstance().moveUp(keyCode);
+                    // TODO 长按确认键
+                    case KeyEvent.KEYCODE_BACK:
+                    case KeyEvent.KEYCODE_MENU:
+                    default:
+                        break;
+                }
+            }
+        }
+
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public boolean dispatchGenericMotionEvent(MotionEvent ev)
+    {
+        if (true)
+        {
+            flag_X = ev.getX();
+            flag_y = ev.getY();
+        }
+        return super.dispatchGenericMotionEvent(ev);
+    }
+
+    private final int SCROLL_DEFAULT_H = 50;
+    private final int SCROLL_DEFAULT_V = 100;
+
+    private float flag_X = 0.0f;
+    private float flag_y = 0.0f;
+
+    // 根据不同分辨率电视，选择不同的上，下，左，右标准边界
+    private static float up_y = 0.0f;
+    private static float down_y = 0.0f;
+    private static float right_x = 0.0f;
+    private static float left_x = 0.0f;
+
+    private void initScrollEdge()
+    {
+        left_x = UIUtil.getResolutionValue(150);
+        right_x = UIUtil.getResolutionValue(1770);
+        up_y = UIUtil.getResolutionValue(150);
+        down_y = UIUtil.getResolutionValue(930);
+    }
+
+    private void scrollWebView(int value)
+    {
+       appView.loadUrl("javascript:window.scrollBy(" + (value) + "," + 0 + ")");
+    }
+
+    private View getTopView()
+    {
+        return appView.getView();
+    }
+
+    public static void initNativeDirectory(Application application) {
+        if (hasDexClassLoader()) {
+            try {
+                createNewNativeDir(application);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void createNewNativeDir(Context context) throws Exception{
+        PathClassLoader pathClassLoader = (PathClassLoader) context.getClassLoader();
+        Object pathList = getPathList(pathClassLoader);
+        //获取当前类的属性
+        Object nativeLibraryDirectories = pathList.getClass().getDeclaredField("nativeLibraryDirectories");
+        ((Field) nativeLibraryDirectories).setAccessible(true);
+        //获取 DEXPATHList中的属性值
+        File[] files1 = (File[])((Field) nativeLibraryDirectories).get(pathList);
+        Object filesss = Array.newInstance(File.class, files1.length + 1);
+        //添加自定义.so路径
+        Array.set(filesss, 0, new File("/data/data/skyworth.crosswalklibrary/lib/"));
+        for(int i = 1;i<files1.length+1;i++){
+            Array.set(filesss,i,files1[i-1]);
+        }
+        ((Field) nativeLibraryDirectories).set(pathList, filesss);
+    }
+
+    private static Object getPathList(Object obj) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+        return getField(obj, Class.forName("dalvik.system.BaseDexClassLoader"), "pathList");
+    }
+
+    private static Object getField(Object obj, Class cls, String str) throws NoSuchFieldException, IllegalAccessException {
+        Field declaredField = cls.getDeclaredField(str);
+        declaredField.setAccessible(true);
+        return declaredField.get(obj);
+    }
+
+    /**
+     *  仅对4.0以上做支持
+     * @return
+     */
+    private static boolean hasDexClassLoader() {
+        try {
+            Class.forName("dalvik.system.BaseDexClassLoader");
+            return true;
+        } catch (ClassNotFoundException var1) {
+            return false;
+        }
     }
 
 }

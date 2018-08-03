@@ -139,4 +139,6 @@ public interface CordovaWebView {
     Context getContext();
     void loadUrl(String url);
     Object postMessage(String id, Object data);
+
+    void setUserAgentString(String ua);
 }

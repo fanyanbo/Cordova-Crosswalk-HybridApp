@@ -22,12 +22,17 @@ public class MainActivity extends CordovaActivity {
 //        launchUrl = "http://beta.webapp.skysrt.com/appstore/ad2/index.html";
 //        launchUrl = "http://beta.webapp.skysrt.com/lxw/H5/video.html";
 //        launchUrl = "http://beta.webapp.skysrt.com/lxw/NFC/index.html";
+//        launchUrl = "http://beta.webapp.skysrt.com/market/music1.html";
+//        launchUrl = "http://beta.webapp.skysrt.com/lxw/ceshi/hhhh/fps.html";
+        launchUrl = "http://beta.webapp.skysrt.com/fyb/vue/1/dist/index.html";
+
 
         int core = extras.getInt("core", 0);
 
         Log.i("fyb","Tag 7 launchUrl = " + launchUrl + ", core = " + core);
 
         setCore(core);
+//        setUserAgentMode(1);
         loadUrl(launchUrl);
 
     }

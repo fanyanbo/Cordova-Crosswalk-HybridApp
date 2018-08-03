@@ -62,6 +62,8 @@ public interface CordovaWebViewEngine {
     /** Add the evaulate Javascript method **/
     void evaluateJavascript(String js, ValueCallback<String> callback);
 
+    void setUserAgentString(String ua);
+
     /**
      * Used to retrieve the associated CordovaWebView given a View without knowing the type of Engine.
      * E.g. ((CordovaWebView.EngineView)activity.findViewById(android.R.id.webView)).getCordovaWebView();

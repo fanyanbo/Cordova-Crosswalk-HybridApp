@@ -143,6 +143,7 @@ public class SystemWebViewEngine implements CordovaWebViewEngine {
     private void initWebViewSettings() {
         webView.setInitialScale(0);
         webView.setVerticalScrollBarEnabled(false);
+
         // Enable JavaScript
         final WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -214,6 +215,8 @@ public class SystemWebViewEngine implements CordovaWebViewEngine {
         // Fix for CB-12015
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
         // Fix for CB-1405
         // Google issue 4641
@@ -351,5 +354,10 @@ public class SystemWebViewEngine implements CordovaWebViewEngine {
         {
             LOG.d(TAG, "This webview is using the old bridge");
         }
+    }
+
+    @Override
+    public void setUserAgentString(String ua) {
+        webView.getSettings().setUserAgentString(ua);
     }
 }
