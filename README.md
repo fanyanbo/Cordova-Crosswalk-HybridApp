@@ -1,5 +1,5 @@
 ## Cordova-Crosswalk-HybridApp
-1.gradlew ccinit拉取工程代码
+1.切换至builds/master分支，执行gradlew ccinit拉取工程代码
 
 2.按遥控器2，可以切换浏览器内核（Android原生内核和XWalk内核）
 
