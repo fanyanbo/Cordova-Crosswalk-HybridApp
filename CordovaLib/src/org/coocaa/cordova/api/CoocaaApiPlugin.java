@@ -28,13 +28,13 @@ public class CoocaaApiPlugin extends CordovaPlugin{
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
-        Log.i(Tag,"CoocaaApiPlugin 22 action = " + action);
+        Log.i(Tag,"CoocaaApiPlugin action = " + action);
         if(WAIT_OS_READY.equals(action))
         {
             this.cordova.getThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {
-                    callbackContext.success();
+                 callbackContext.success();
                 }
             });
             return true;

@@ -14,7 +14,7 @@ cordova.define("cordova-plugin-coocaaosapi.CoocaaOS_Api", function(require, expo
 
          var thiz = this;
          channel.onCordovaReady.subscribe(function(){
-            console.log('fyb,coocaaosapi.js channel.onCordovaReady.subscribe');
+            console.log('fyb,coocaaosapi.js 1111');
             thiz.waitForCoocaaOSInitReady(
                 function(message){
                     console.log('fyb,coocaaosapi.js success CoocaaOSInitReady ' +message);
@@ -28,8 +28,9 @@ cordova.define("cordova-plugin-coocaaosapi.CoocaaOS_Api", function(require, expo
     }
 
     CoocaaOSApi.prototype.waitForCoocaaOSInitReady = function(success,error){
+         console.log('fyb,coocaaosapi.js 2222');
          argscheck.checkArgs('ff','CoocaaOSApi.waitForCoocaaOSInitReady',arguments);
-         exec(success,error,'CoocaaApiPlugin','waitForOSReady',[]);
+         exec(success,error,'CoocaaOSApi','waitForOSReady',[]);
     }
 
     CoocaaOSApi.prototype.startLocalMedia = function(success,error){

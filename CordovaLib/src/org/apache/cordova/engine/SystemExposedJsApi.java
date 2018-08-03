@@ -18,6 +18,7 @@
 */
 package org.apache.cordova.engine;
 
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 import org.apache.cordova.CordovaBridge;
@@ -38,6 +39,7 @@ class SystemExposedJsApi implements ExposedJsApi {
 
     @JavascriptInterface
     public String exec(int bridgeSecret, String service, String action, String callbackId, String arguments) throws JSONException, IllegalAccessException {
+        Log.i("fyb","exec service = " + service + ",action = " + action);
         return bridge.jsExec(bridgeSecret, service, action, callbackId, arguments);
     }
 
