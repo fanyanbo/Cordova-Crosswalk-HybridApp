@@ -26,6 +26,7 @@ public class MainActivity extends CordovaActivity {
 //        launchUrl = "http://beta.webapp.skysrt.com/lxw/ceshi/hhhh/fps.html";
 //        launchUrl = "http://beta.webapp.skysrt.com/fyb/vue/1/dist/index.html";
 
+        launchUrl = "http://beta.webapp.skysrt.com/fyb/webapp/index.html";
 
         int core = extras.getInt("core", 0);
 

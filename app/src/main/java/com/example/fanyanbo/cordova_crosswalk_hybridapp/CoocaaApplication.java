@@ -65,7 +65,7 @@ public class CoocaaApplication extends SkyApplication {
 
         //add by fyb
         File[] files = new File[]{
-                new File("/data/data/skyworth.crosswalklibrary/lib"),
+//                new File("/data/data/skyworth.crosswalklibrary/lib"),
                 new File("/vendor/lib"),
                 new File("/system/lib")
         };
